@@ -1,16 +1,21 @@
-# This is a sample Python script.
+import tkinter
+window = tkinter.Tk()
+window.title("Tkinter")
+window.minsize(width=1000, height=1000)
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def first_num_entery():
+    pass
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+calculator_title = tkinter.Label(window,text="Calculator", font=(25,),bg='black',fg='white')
+calculator_title.pack(pady=13)
+# Setting the label for enter_number_entry
+first_num_lable=tkinter.Label(window, text="Enter first number",font=('Arial', 15))
+first_num_lable.pack(pady=3)
+# Setting the 1rst entry
+enter_number_entry = tkinter.Entry(window, font=("Arial",12,'italic'), width=13, bg='black', fg='white', bd=2, justify='center', relief='solid', invalidcommand=first_num_entery)
+enter_number_entry.pack()
+num_label_second = tkinter.Label(window, text="Enter second number",font=("Arial", 15,'italic'),)
+num_label_second.pack(pady=3)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+window.mainloop()
