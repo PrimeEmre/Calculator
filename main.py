@@ -1,5 +1,6 @@
 import tkinter
 
+# Setting tkinter
 window = tkinter.Tk()
 window.title("Tkinter")
 window.minsize(width=1000, height=1000)
@@ -65,13 +66,14 @@ enter_number_entry.pack()
 selected_calc_options = tkinter.StringVar()
 selected_calc_options.set("Select a calc option")
 
+# Setting calc apoptosis
 calc_options = ['+', '-', '*', '/']
 dropdown = tkinter.OptionMenu(window, selected_calc_options, *calc_options, command=dropdwon)
 dropdown.pack(pady=5)
 
+# setting the second entry
 num_label_second = tkinter.Label(window, text="Enter second number", font=("Arial", 15, 'bold'))
 num_label_second.pack(pady=3)
-
 second_num_entry = tkinter.Entry(window, font=('Arial', 12, 'italic'), bg='black', fg='white', width=13, bd=2,
                                  justify='center')
 second_num_entry.pack(pady=3)
@@ -80,7 +82,6 @@ second_num_entry.pack(pady=3)
 result_button = tkinter.Button(window, font=("Arial", 12, 'italic'), bg='black', fg='white', text="Result",
                                command=reslut)
 result_button.pack(pady=5)
-
 result_label = tkinter.Label(window, text="", font=("Arial", 14, "bold"))
 result_label.pack(pady=5)
 
