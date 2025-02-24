@@ -1,9 +1,11 @@
-import tkinter
+import customtkinter
+# Setting up the main window
+window = customtkinter.CTk()
+window.title("Calculator")
+window.geometry("1000x1000")
 
-# Setting tkinter
-window = tkinter.Tk()
-window.title("Tkinter")
-window.minsize(width=1000, height=1000)
+customtkinter.set_appearance_mode('dark')
+customtkinter.set_default_color_theme("dark-blue")
 
 
 # Function to get first number
@@ -17,12 +19,12 @@ def get_second_num():
 
 
 # Handling dropdown selection
-def dropdwon(selection):
+def dropdown(selection):
     selected_calc_options.set(selection)
 
 
 # Function to calculate result
-def reslut():
+def result():
     try:
         num1 = float(get_first_num())
         num2 = float(get_second_num())
@@ -37,52 +39,51 @@ def reslut():
             res = num1 * num2
         elif operation == "/":
             if num2 == 0:
-                result_label.config(text='Cannot divide by 0')
+                result_label.configure(text='Cannot divide by 0')
                 return
             res = num1 / num2
         else:
-            result_label.config(text='Select an operation')
+            result_label.configure(text='Select an operation')
             return
 
         # Display result
-        result_label.config(text=f"Result: {res}")
+        result_label.configure(text=f"Result: {res}")
 
     except ValueError:
-        result_label.config(text="Enter valid numbers!")
+        result_label.configure(text="Enter valid numbers!")
 
 
 # UI Elements
-calculator_title = tkinter.Label(window, text="Calculator", font=(25,), bg='black', fg='white')
+calculator_title = customtkinter.CTkLabel(window, text="Calculator", font=("Arial", 25))
 calculator_title.pack(pady=13)
 
-first_num_label = tkinter.Label(window, text="Enter first number", font=('Arial', 15, 'bold'))
+first_num_label = customtkinter.CTkLabel(window, text="Enter first number", font=('Arial', 15, 'bold'))
 first_num_label.pack(pady=3)
 
-enter_number_entry = tkinter.Entry(window, font=("Arial", 12, 'italic'), width=13, bg='black', fg='white', bd=2,
-                                   justify='center', relief='solid')
+enter_number_entry = customtkinter.CTkEntry(window, font=("Arial", 12, 'italic'), width=150)
 enter_number_entry.pack()
 
 # Setting the dropdown
-selected_calc_options = tkinter.StringVar()
-selected_calc_options.set("Select a calc option")
+selected_calc_options = customtkinter.StringVar(value="Select a calc option")
 
-# Setting calc apoptosis
+# Setting calc options
 calc_options = ['+', '-', '*', '/']
-dropdown = tkinter.OptionMenu(window, selected_calc_options, *calc_options, command=dropdwon)
+dropdown = customtkinter.CTkOptionMenu(window, variable=selected_calc_options, values=calc_options, command=dropdown)
 dropdown.pack(pady=5)
 
-# setting the second entry
-num_label_second = tkinter.Label(window, text="Enter second number", font=("Arial", 15, 'bold'))
+# Setting the second entry
+num_label_second = customtkinter.CTkLabel(window, text="Enter second number", font=("Arial", 15, 'bold'))
 num_label_second.pack(pady=3)
-second_num_entry = tkinter.Entry(window, font=('Arial', 12, 'italic'), bg='black', fg='white', width=13, bd=2,
-                                 justify='center')
+
+second_num_entry = customtkinter.CTkEntry(window, font=('Arial', 12, 'italic'), width=150)
 second_num_entry.pack(pady=3)
 
 # Result button
-result_button = tkinter.Button(window, font=("Arial", 12, 'italic'), bg='black', fg='white', text="Result",
-                               command=reslut)
+result_button = customtkinter.CTkButton(window, font=("Arial", 12, 'italic'), text="Result", command=result)
 result_button.pack(pady=5)
-result_label = tkinter.Label(window, text="", font=("Arial", 14, "bold"))
+
+# Result label
+result_label = customtkinter.CTkLabel(window, text="", font=("Arial", 14, "bold"))
 result_label.pack(pady=5)
 
 window.mainloop()
